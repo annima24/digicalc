@@ -1,0 +1,1 @@
+This is a calculator that I am making for an assignment with The Odin Project. The aim is to make a working calculator that will do simple mathematical equations, using html, css, and plain old vanilla javascript. Please, enjoy.
