@@ -46,7 +46,13 @@ function divide(a,b)  {
 
 function equals(e)   {
     let secondNum = display.textContent;
-    return Number(display.textContent = operate(currentOperator,displayValue,secondNum).toFixed(2),
+
+    if (operate(currentOperator,displayValue,secondNum) % 1 !== 0)  {
+        return Number(display.textContent = operate(currentOperator,displayValue,secondNum).toFixed(2),
+        displayValue = '0',
+        currentOperator = ''
+        );
+    }else return display.textContent = operate(currentOperator,displayValue,secondNum,
     displayValue = '0',
     currentOperator = ''
     );
