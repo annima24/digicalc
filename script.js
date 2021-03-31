@@ -1,4 +1,4 @@
-const fuckYou = document.querySelector('#fuckYou');
+
 
 function add(a,b)  {
     return a + b;
@@ -19,6 +19,3 @@ function divide(a,b)  {
     return a / b;
 }
 
-fuckYou.addEventListener('click', function()    {
-    alert('fuckyou');
-})
