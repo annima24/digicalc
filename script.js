@@ -36,8 +36,8 @@ function multiply(a,b)  {
 }
 
 function divide(a,b)  {
-    if (b === 0)    {
-        return "nice try satan"
+    if (b === '0')    {
+        return alert("nice try satan");
     }
     return a / b;
 }
@@ -48,6 +48,8 @@ function divide(a,b)  {
 function operate(operator, a, b)  {
     return operator(a,b);
 }
+
+//these next four functions are what happens when a user clicks an operator. if the displayValue variable is empty it logs whatever is in the display as the displayValue to be used in the second half of the equation.  if the display != 0 then you operate using the stored variables and the textContent of the display, then checks length to make sure its not too long.
 
 function clickAdd(e) {
             if (displayValue === '0') {
@@ -73,6 +75,8 @@ function clickDivide(e) {
             } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = divide, displayValue = display.textContent, checkLength() ;
         }
 
+        //this function handles the equal operator, it works very similiarly to the second time you click an operator if there is already a display value stored.
+
 function equals(e)   {
     let secondNum = display.textContent;
     return (display.textContent = operate(currentOperator, displayValue, secondNum),
@@ -87,6 +91,8 @@ function clear()    {
     display.textContent = '';
     currentOperator = '';
 }
+
+//handles putting numbers into the display
 
 function clickFunc(e)   {
     if (display.textContent.length > 7) {
@@ -105,6 +111,8 @@ if (display.textContent.length > 8)  {
 }
 }
 
+//bing bang boom
+
 numOne.addEventListener('click',clickFunc);
 numTwo.addEventListener('click',clickFunc);
 numThree.addEventListener('click',clickFunc);
@@ -121,4 +129,4 @@ minusBtn.addEventListener('click', clickSubtract);
 timesBnt.addEventListener('click',clickMultiply)
 divisionBtn.addEventListener('click', clickDivide)
 equalsBtn.addEventListener('click', equals);
-checkLength();
+
