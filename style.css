@@ -17,8 +17,8 @@ button  {
     font-size: 2.5em;
     color: black;
 }
-#container {
-    
+
+#container {    
     display: grid;
     height: 450px;    
     grid-template-columns: repeat(3, 100px );
@@ -30,6 +30,7 @@ button  {
     border: 2px solid black;
     background: gray;
 }
+
 #display    {
     height: 50px;
     grid-column: span 3 ;

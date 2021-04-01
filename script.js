@@ -22,7 +22,7 @@ let displayValue = '0';
 let currentOperator = '';
 
 
-
+//these four functions are the basic math functions. takes two numbers performs an operation and then returns the result
 function add(a,b)  {
     return Number(a) + Number(b);
 }
@@ -42,57 +42,67 @@ function divide(a,b)  {
     return a / b;
 }
 
-//Create a new function operate() that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
+//the function that runs when the user clicks on the equals button
 
-function equals(e)   {
-    let secondNum = display.textContent;
-
-    if (operate(currentOperator,displayValue,secondNum) % 1 !== 0)  {
-        return Number(display.textContent = operate(currentOperator,displayValue,secondNum).toFixed(2),
-        displayValue = '0',
-        currentOperator = ''
-        );
-    }else return display.textContent = operate(currentOperator,displayValue,secondNum,
-    displayValue = '0',
-    currentOperator = ''
-    );
-}
 
 function operate(operator, a, b)  {
     return operator(a,b);
 }
 
-function operatorAddFunc(e) {
-    return ((displayValue =  display.textContent), (currentOperator = add)(display.textContent = '0'));
+function clickAdd(e) {
+            if (displayValue === '0') {
+             return   ((displayValue =  display.textContent), (currentOperator = add)(display.textContent = '0'));
+            } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = add, displayValue = display.textContent, checkLength() ;
+        }
+
+function clickSubtract(e) {
+    if (displayValue === '0') {
+     return   ((displayValue =  display.textContent), (currentOperator = subtract)(display.textContent = '0'));
+    } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = subtract, displayValue = display.textContent, checkLength();
 }
 
-function operatorSubtractFunc(e) {
-    return ((displayValue =  display.textContent), (currentOperator = subtract)(display.textContent = '0'));
+function clickMultiply(e) {
+    if (displayValue === '0') {
+     return   ((displayValue =  display.textContent), (currentOperator = multiply)(display.textContent = '0'));
+    } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = multiply, displayValue = display.textContent, checkLength() ;
 }
 
-function operatorMultiplyFunc(e) {
-    return ((displayValue =  display.textContent), (currentOperator = multiply)(display.textContent = '0'));
-}
+function clickDivide(e) {
+            if (displayValue === '0') {
+             return   ((displayValue =  display.textContent), (currentOperator = divide)(display.textContent = '0'));
+            } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = divide, displayValue = display.textContent, checkLength() ;
+        }
 
-function operatorDivideFunc(e) {
-    return ((displayValue =  display.textContent), (currentOperator = divide)(display.textContent = '0'));
-}
-
-function checkLength()  {
-    if (display.textContent.length > 9) {
-    } return;
+function equals(e)   {
+    let secondNum = display.textContent;
+    return (display.textContent = operate(currentOperator, displayValue, secondNum),
+        displayValue = '0',
+        currentOperator = '',
+        checkLength()
+    );
 }
 
 function clear()    {
-    display.textContent = 0
+    displayValue = '0';
+    display.textContent = '';
+    currentOperator = '';
 }
 
 function clickFunc(e)   {
-    if (display.textContent.length > 8) {
+    if (display.textContent.length > 7) {
         return;
     }else if (display.textContent === '0')    {
         display.textContent = e.target.textContent;
-    }else  return display.textContent += e.target.textContent; 
+    }
+    else if (displayValue === display.textContent)   {        
+        display.textContent = e.target.textContent;
+    }
+    else return display.textContent += e.target.textContent;
+}
+function checkLength()  {
+if (display.textContent.length > 8)  {
+    return (displayValue = '0', currentOperator = '', display.textContent = ''), alert('that number is like wayyyy too high mann, try again please! ');
+}
 }
 
 numOne.addEventListener('click',clickFunc);
@@ -106,9 +116,9 @@ numEight.addEventListener('click',clickFunc);
 numNine.addEventListener('click',clickFunc);
 numZero.addEventListener('click',clickFunc);
 clearBtn.addEventListener('click', clear);
-plusBtn.addEventListener('click', operatorAddFunc);
-minusBtn.addEventListener('click', operatorSubtractFunc);
-timesBnt.addEventListener('click',operatorMultiplyFunc)
-divisionBtn.addEventListener('click', operatorDivideFunc)
+plusBtn.addEventListener('click', clickAdd);
+minusBtn.addEventListener('click', clickSubtract);
+timesBnt.addEventListener('click',clickMultiply)
+divisionBtn.addEventListener('click', clickDivide)
 equalsBtn.addEventListener('click', equals);
-
+checkLength();
