@@ -6,7 +6,7 @@ html{
     font-family: 'Orbitron', sans-serif;
 
     color: chartreuse;
-    background: rgba(0, 0, 0, 0) linear-gradient(to bottom right, rgb(121, 0, 255), rgb(255, 0, 194)) repeat scroll 0% 0%;
+    background:linear-gradient(to bottom right, rgb(121, 0, 255), rgba(247, 77, 207, 0.849)) repeat scroll 0% 0%;
     
 }
 
@@ -28,8 +28,7 @@ button  {
     padding: 15px;
     padding-top: 25px;
     border: 2px solid black;
-    background: gray;
-}
+    background:linear-gradient(to bottom ,rgb(128, 128, 128), rgba(128, 128, 128, 0.685)) repeat scroll 0% 0%;}
 
 #display    {
     height: 50px;

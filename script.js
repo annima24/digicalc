@@ -37,43 +37,58 @@ function multiply(a,b)  {
 
 function divide(a,b)  {
     if (b === '0')    {
-        return alert("nice try satan");
+        return alert("nice try satan"), clear();
     }
     return a / b;
 }
 
-//the function that runs when the user clicks on the equals button
 
+//this is the actual function that takes the operator and two values and performs an operation on them
 
 function operate(operator, a, b)  {
-    return operator(a,b);
+    if (operator === 'add') {
+        return add(a,b), currentOperator = add;
+    } else if (operator === 'subtract') {
+        return subtract(a,b) , currentOperator = subtract;
+    }   else if (operator === 'multiply') {
+        return multiply(a,b) , currentOperator = multiply;
+    }   else if (operator === 'divide') {
+        return divide(a,b) , currentOperator = divide;
+    }
 }
+
+function returnOperator(e)   {
+    if (e.target.id === 'add') {
+        currentOperator(e)
+    }
+}
+
 
 //these next four functions are what happens when a user clicks an operator. if the displayValue variable is empty it logs whatever is in the display as the displayValue to be used in the second half of the equation.  if the display != 0 then you operate using the stored variables and the textContent of the display, then checks length to make sure its not too long.
 
-function clickAdd(e) {
-            if (displayValue === '0') {
-             return   ((displayValue =  display.textContent), (currentOperator = add)(display.textContent = '0'));
-            } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = add, displayValue = display.textContent, checkLength() ;
+function clickOperator(e) {
+            if (displayValue === '0') {                
+             return   ((displayValue =  display.textContent));
+            } else return display.textContent = operate(currentOperator,displayValue, display.textContent), displayValue = display.textContent, checkLength() ;
         }
 
-function clickSubtract(e) {
-    if (displayValue === '0') {
-     return   ((displayValue =  display.textContent), (currentOperator = subtract)(display.textContent = '0'));
-    } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = subtract, displayValue = display.textContent, checkLength();
-}
+// function clickSubtract(e) {
+//     if (displayValue === '0') {
+//      return   ((displayValue =  display.textContent), (currentOperator = subtract));
+//     } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = subtract, displayValue = display.textContent, checkLength();
+// }
 
-function clickMultiply(e) {
-    if (displayValue === '0') {
-     return   ((displayValue =  display.textContent), (currentOperator = multiply)(display.textContent = '0'));
-    } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = multiply, displayValue = display.textContent, checkLength() ;
-}
+// function clickMultiply(e) {
+//     if (displayValue === '0') {
+//      return   ((displayValue =  display.textContent), (currentOperator = multiply));
+//     } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = multiply, displayValue = display.textContent, checkLength() ;
+// }
 
-function clickDivide(e) {
-            if (displayValue === '0') {
-             return   ((displayValue =  display.textContent), (currentOperator = divide)(display.textContent = '0'));
-            } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = divide, displayValue = display.textContent, checkLength() ;
-        }
+// function clickDivide(e) {
+//             if (displayValue === '0') {
+//              return   ((displayValue =  display.textContent), (currentOperator = divide));
+//             } else return display.textContent = operate(currentOperator,displayValue, display.textContent), currentOperator = divide, displayValue = display.textContent, checkLength() ;
+//         }
 
         //this function handles the equal operator, it works very similiarly to the second time you click an operator if there is already a display value stored.
 
@@ -97,7 +112,7 @@ function clear()    {
 function clickFunc(e)   {
     if (display.textContent.length > 7) {
         return;
-    }else if (display.textContent === '0')    {
+    }else if (display.textContent === displayValue)    {
         display.textContent = e.target.textContent;
     }
     else if (displayValue === display.textContent)   {        
@@ -107,7 +122,7 @@ function clickFunc(e)   {
 }
 function checkLength()  {
 if (display.textContent.length > 8)  {
-    return (displayValue = '0', currentOperator = '', display.textContent = ''), alert('that number is like wayyyy too high mann, try again please! ');
+    return (displayValue = '0', currentOperator = '', display.textContent = ''), alert('woahhh, like tone it down a little like, k brahh?');
 }
 }
 
@@ -124,9 +139,14 @@ numEight.addEventListener('click',clickFunc);
 numNine.addEventListener('click',clickFunc);
 numZero.addEventListener('click',clickFunc);
 clearBtn.addEventListener('click', clear);
-plusBtn.addEventListener('click', clickAdd);
+plusBtn.addEventListener('click', clickOperator);
 minusBtn.addEventListener('click', clickSubtract);
 timesBnt.addEventListener('click',clickMultiply)
 divisionBtn.addEventListener('click', clickDivide)
 equalsBtn.addEventListener('click', equals);
 
+document.addEventListener('keydown', logKey);
+
+function logKey(e) {
+  console.log(e);
+}
