@@ -57,7 +57,7 @@ function clickOperator(e) {
                 return display.textContent = operate(currentOperator,displayValue, display.textContent),returnOperator(e), displayValue = display.textContent;
         }
 
-function equals(e)   {
+function equals()   {
     let secondNum = display.textContent;
     return (display.textContent = operate(currentOperator, displayValue, secondNum),
         displayValue = '',
@@ -75,14 +75,14 @@ function clear()    {
 //handles putting numbers into the display
 
 function clickFunc(e)   {
-    if (display.textContent.length > 7) {
-        return;
+    if (display.textContent.length > 8) {
+        return alert('uhh, stop that, too many numbersss'), clear();
     }else if (display.textContent === displayValue)    {
         display.textContent = e.target.textContent;
     }
-    else if (displayValue === display.textContent)   {        
-        display.textContent = e.target.textContent;
-    }
+    // else if (displayValue === display.textContent)   {        
+    //     display.textContent = e.target.textContent;
+    // }
     else return display.textContent += e.target.textContent;
 }
 function checkLength()  {
